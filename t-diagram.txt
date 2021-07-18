@@ -11,3 +11,11 @@ hello                   Function
 result                  15
 numPlus                 function 
 result                  18
+num                     15
+num2                    function parameter
+logAndReturn            function
+result                  10
+num                     15
+timesTwo                function
+num2                    parameter
+result                  20
