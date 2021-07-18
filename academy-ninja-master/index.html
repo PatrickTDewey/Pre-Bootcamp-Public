@@ -8,43 +8,46 @@
 </head>
 
 <body>
-	<div id='background'>
-        <div id='character' style='position:absolute; top:100px; left:450px; background-image: url("img/down1.png"); width:59px; height:86px;'></div>
-    </div>
-    <script type="text/javascript">
-	    var leftValue = 450, topValue = 100;
+	<div id="background" style="width: 900px; height: 750px; background-image: url('img/white_bg.jpg');">
+	  <div id="character" style="width: 59px; height: 86px; background-image: url('img/down1.png'); position: absolute; left: 150px; top: 150px;"></div>  
+	</div>
 
-    	function update(){
-			document.getElementById("character").style.top = topValue+"px";
-			document.getElementById("character").style.left = leftValue+"px";
-    	}
+	<script type="text/javascript">
+		let leftValue = 150, topValue = 150, walkValue = 1;
+		document.onkeydown = function(e){
+			console.log(e);
+			if (walkValue == 1){
+				walkValue = 2;
+			}
+			else if (walkValue == 2){
+				walkValue = 1;
+			}
+			if(e.keyCode == 37 && leftValue > 0){
+				// Left
+				leftValue = leftValue - 25;
+				document.getElementById("character").style.left = leftValue+"px";
+				document.getElementById("character").style.backgroundImage = "url('img/left"+walkValue+".png')";
+			}
+			else if (e.keyCode == 39 && leftValue < 650){
+				// Right
+				leftValue = leftValue + 25;
+				document.getElementById("character").style.left = leftValue+"px";
+				document.getElementById("character").style.backgroundImage = "url('img/right"+walkValue+".png')";
+			}
+			else if (e.keyCode == 38 && topValue > 0){
+				// Top
+				topValue = topValue - 25;
+				document.getElementById("character").style.top = topValue+"px";
+				document.getElementById('character').style.backgroundImage = "url('img/top"+walkValue+".png')";
+			}
+			else if (e.keyCode == 40 && topValue < 650){
+				// Bottom
+				topValue = topValue + 25;
+				document.getElementById("character").style.top = topValue+"px";
+				document.getElementById('character').style.backgroundImage = "url('img/down"+walkValue+".png')";
+			}
+		}
+	</script>
 
-    	document.onkeydown = function(e){
-    		console.log(e);
-    		if(e.keyCode == 37) { // LEFT
-				if (leftValue > 0) {
-					leftValue = leftValue - 10;
-				}
-    		}
-    		else if (e.keyCode == 39) { // RIGHT
-				if (leftValue < 500) {
-					leftValue = leftValue + 10;    		
-				}
-    		}
-			if (e.keyCode == 40) { // DOWN
-				console.log(topValue);
-				if (topValue < 500) {
-					topValue = topValue + 10;
-				}
-			}
-			else if (e.keyCode == 38) { // UP
-				if (topValue > 0) {
-					topValue -= 10;
-				}	
-			}
-    		// ...
-    		update();
-    	}
-    </script>
 </body>
 </html>
