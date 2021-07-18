@@ -4,3 +4,10 @@ displayGroceryList      Function
 produce                 [`apples`,`oranges`]
 frozen                  [`broccoli`,`ice cream`] --> [`broccoli`,`ice cream`,`hashbrowns`]
 movieLibrary            [`Bambi`,`E.T`,`Toy Story`] --> [`Bambi`,`Beetlejuice`,`Toy Story`,`Zoro`]
+
+
+Variable                Value
+hello                   Function
+result                  15
+numPlus                 function 
+result                  18
