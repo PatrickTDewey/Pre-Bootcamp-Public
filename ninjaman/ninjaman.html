@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <script src="./scripts/main.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="world">
+    </div>
+    <div id="ninjaman"></div>
+    <script type="text/javascript">
+        // function makeWorld(grid) {
+        //     let x = grid, y = grid;
+        //     for (let length = 0; length < y; length++) {
+        //         console.log(`length: ` + length);
+        //         let row = document.createElement('div');
+        //         row.className = `row`;
+        //         document.body.appendChild(row);
+        //         for (let width = 0; width < x; width++) {
+        //             let wall = document.createElement('div');
+        //             wall.className = `wall`;
+        //             row.appendChild(wall);
+        //             console.log(`width: ` + width);
+        //         }
+        //     }
+        // }
+        // makeWorld(8);
+        let world = [
+            [1,1,1,1,1],
+            [1,0,2,2,1],
+            [1,2,1,2,1],
+            [1,0,2,0,1],
+            [1,0,2,2,1],
+            [1,2,1,2,1],
+            [1,0,2,0,1],
+            [1,0,2,2,1],
+            [1,2,1,2,1],
+            [1,0,2,0,1],
+            [1,1,1,1,1],
+        ];
+        let worldDict = {
+            0: 'blank',
+            1: 'wall',
+            2: 'sushi'
+        }
+        
+        function drawWorld() {
+            let output = '';
+            for (let row = 0; row < world.length; row++) {
+                output += `<div class='row'>`;
+                for (let x = 0; x < world[row].length; x++) {
+                    console.log(worldDict[world[row][x]]); 
+                    output += `<div class='${worldDict[world[row][x]]}'></div>`;                   
+                }
+                output += '</div>';
+            }
+            document.getElementById('world').innerHTML = output;
+        }
+        drawWorld();
+        let ninjaman = {
+            x: 1,
+            y: 1
+        }
+        
+        function drawNinja() {
+            document.getElementById('ninjaman').style.top = ninjaman.y * 40+`px`;
+            document.getElementById('ninjaman').style.left = ninjaman.x * 40+`px`;
+        }
+        drawNinja();
+
+        
+        document.onkeydown = function(e){
+            console.log(e);
+            if (e.keyCode == 37) { // Left
+                if (world[ninjaman.y][ninjaman.x - 1] != 1) {
+                    ninjaman.x--;
+                }
+                
+            }
+            if (e.keyCode == 39) { // Right
+                if (world[ninjaman.y][ninjaman.x + 1] != 1) {
+                    ninjaman.x++;
+                }
+            }
+            if (e.keyCode == 38) { // Top
+                if (world[ninjaman.y - 1][ninjaman.x] != 1) {
+                    ninjaman.y--;
+                }
+                
+            }
+            if (e.keyCode == 40) { // Bottom
+                if (world[ninjaman.y+1][ninjaman.x] != 1) {
+                    ninjaman.y++;
+                }
+                
+            }
+            world[ninjaman.y][ninjaman.x] = 0;
+            drawWorld();
+            drawNinja();
+        }
+    </script>
+</body>
+</html>
